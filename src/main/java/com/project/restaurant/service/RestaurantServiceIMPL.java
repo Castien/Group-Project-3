@@ -1,6 +1,6 @@
 package com.project.restaurant.service;
 
-import com.project.restaurant.dao.RestaurantDAO;
+import com.project.restaurant.dao.ProductDAO;
 import com.project.restaurant.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,11 @@ public class RestaurantServiceIMPL implements RestaurantService{
 
 
     // Injecting the dao layer
-    private final RestaurantDAO restaurantDAO;
+    private final ProductDAO productDAO;
 
     @Autowired
-    public RestaurantServiceIMPL(RestaurantDAO restaurantDAO) {
-        this.restaurantDAO = restaurantDAO;
+    public RestaurantServiceIMPL(ProductDAO productDAO) {
+        this.productDAO = productDAO;
     }
 
     @Override
