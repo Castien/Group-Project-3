@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class RestaurantIMPL implements RestaurantDAO {
+public class ProductIMPL implements ProductDAO {
 
     //Define field for entity manager
     /*The EntityManager API is used to create and remove persistent entity instances,
@@ -20,7 +20,7 @@ public class RestaurantIMPL implements RestaurantDAO {
 
     //Set up constructor injection
     @Autowired
-    public RestaurantIMPL(EntityManager entityManager) {
+    public ProductIMPL(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

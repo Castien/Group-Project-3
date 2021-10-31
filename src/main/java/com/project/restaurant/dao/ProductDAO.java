@@ -4,9 +4,9 @@ import com.project.restaurant.entity.Product;
 
 import java.util.List;
 
-public interface RestaurantDAO {
+public interface ProductDAO {
     List<Product> findAll();
     Object findById(int theId);
-    void saveOrUpdate(Product theEmployee);
+    void saveOrUpdate(Product theProduct);
     void deleteById(int theId);
 }
