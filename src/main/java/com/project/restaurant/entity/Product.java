@@ -2,7 +2,6 @@ package com.project.restaurant.entity;
 
 import javax.persistence.*;
 
-
 @Entity //This tells Java this is an entity being mapped to a database table.
 @Table(name = "products") //Name of the database table being mapped to the class.
 public class Product {

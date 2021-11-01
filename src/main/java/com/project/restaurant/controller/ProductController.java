@@ -11,7 +11,6 @@ import java.util.List;
 //Allow calls from React
 @CrossOrigin(origins = { "http://localhost:3000"})
 @RestController
-@RequestMapping("/api")
 public class ProductController {
 
     private final RestaurantService restaurantService;
