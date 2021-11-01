@@ -11,6 +11,7 @@ import java.util.List;
 //Allow calls from React
 @CrossOrigin(origins = { "http://localhost:3000"})
 @RestController
+@RequestMapping("/api")
 public class ProductController {
 
     private final RestaurantService restaurantService;
@@ -28,6 +29,14 @@ public class ProductController {
         return restaurantService.findAll();
     }
 
+    //This is a GET request that will read a list of all the parts.
+    //http://localhost:8080/retrieveProductByID/1
+    @GetMapping("/retrieveProductByID/{productId}")
+    public String findByID(@PathVariable int productId) {
+        restaurantService.findById(productId);
+        return "Product id : " + productId;
+    }
+
     //This is a POST request to add a new product.
     //http://localhost:8080/addProduct
     @PostMapping("/addProduct")
@@ -36,7 +45,7 @@ public class ProductController {
         //this is to force a save of new item .... instead of update
         theProduct.setId(0);
 
-        //This will call the productDqoImpl.save method to save a new product
+        //This will call the productImpl.save method to save a new product
         //through the restaurantService
         restaurantService.saveOrUpdate(theProduct);
         return theProduct;
