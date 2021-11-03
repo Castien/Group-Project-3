@@ -1,20 +1,20 @@
-package com.project.restaurant.service;
+package com.project.shop.service;
 
-import com.project.restaurant.dao.CartDAO;
-import com.project.restaurant.entity.Cart;
+import com.project.shop.dao.CartDAO;
+import com.project.shop.entity.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ShoppingCartServiceIMPL implements ShoppingCartService {
+public class CartServiceIMPL implements CartService {
 
     // Injecting the parts dao layer
     private final CartDAO cartDAO;
 
     @Autowired
-    public ShoppingCartServiceIMPL(CartDAO cartDAO) {
+    public CartServiceIMPL(CartDAO cartDAO) {
         this.cartDAO = cartDAO;
     }
     @Override

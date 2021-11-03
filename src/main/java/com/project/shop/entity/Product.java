@@ -1,4 +1,4 @@
-package com.project.restaurant.entity;
+package com.project.shop.entity;
 
 import javax.persistence.*;
 

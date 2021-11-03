@@ -1,4 +1,4 @@
-package com.project.restaurant.entity;
+package com.project.shop.entity;
 
 import javax.persistence.*;
 
@@ -27,11 +27,11 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(String productName, float productPrice, float cartTotal, int productQuantity) {
-        this.itemName = productName;
-        this.itemPrice = productPrice;
+    public Cart(String itemName, float itemPrice, float cartTotal, int itemQuantity) {
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
         this.cartTotal = cartTotal;
-        this.itemQuantity = productQuantity;
+        this.itemQuantity = itemQuantity;
     }
 
     public int getId() {

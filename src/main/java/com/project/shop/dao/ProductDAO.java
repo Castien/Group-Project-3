@@ -1,6 +1,6 @@
-package com.project.restaurant.dao;
+package com.project.shop.dao;
 
-import com.project.restaurant.entity.Product;
+import com.project.shop.entity.Product;
 
 import java.util.List;
 
