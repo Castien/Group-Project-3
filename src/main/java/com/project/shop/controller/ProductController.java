@@ -1,7 +1,7 @@
-package com.project.restaurant.controller;
+package com.project.shop.controller;
 
-import com.project.restaurant.entity.Product;
-import com.project.restaurant.service.RestaurantService;
+import com.project.shop.entity.Product;
+import com.project.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -13,19 +13,27 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    private final RestaurantService restaurantService;
+    private final ProductService productService;
 
-    //Constructor Injection - tells the spring framework to wire up dependencies for the restaurantService.
+    //Constructor Injection - tells the spring framework to wire up dependencies for the productService.
     @Autowired
-    public ProductController(@Qualifier("restaurantServiceIMPL")RestaurantService restaurantService) {
-        this.restaurantService = restaurantService;
+    public ProductController(@Qualifier("productServiceIMPL") ProductService productService) {
+        this.productService = productService;
     }
 
     //This is a GET request that will read a list of all the Products.
     //http://localhost:8080/retrieveAllProducts
     @GetMapping("/retrieveAllProducts")
     public List<Product> findAll() {
-        return restaurantService.findAll();
+        return productService.findAll();
+    }
+
+    //This is a GET request that will read a list of all the parts.
+    //http://localhost:8080/retrieveProductByID/1
+    @GetMapping("/retrieveProductByID/{productId}")
+    public String findByID(@PathVariable int productId) {
+        productService.findById(productId);
+        return "Product id : " + productId;
     }
 
     //This is a POST request to add a new product.
@@ -36,9 +44,9 @@ public class ProductController {
         //this is to force a save of new item .... instead of update
         theProduct.setId(0);
 
-        //This will call the productDqoImpl.save method to save a new product
-        //through the restaurantService
-        restaurantService.saveOrUpdate(theProduct);
+        //This will call the productImpl.save method to save a new product
+        //through the productService
+        productService.saveOrUpdate(theProduct);
         return theProduct;
     }
 
@@ -47,7 +55,7 @@ public class ProductController {
     @PutMapping("/updateProduct")
     public Product updateProduct(@RequestBody Product updateProduct) {
         //Notice theProduct.setId(0); this will execute an update instead of a create
-        restaurantService.saveOrUpdate(updateProduct);
+        productService.saveOrUpdate(updateProduct);
         return updateProduct;
     }
 
@@ -56,7 +64,7 @@ public class ProductController {
     @DeleteMapping("/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable int productId) {
         //This will execute the deleteByID.
-        restaurantService.deleteById(productId);
+        productService.deleteById(productId);
         return "Deleted product id : " + productId;
     }
 

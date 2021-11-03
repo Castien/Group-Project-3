@@ -1,10 +1,10 @@
-package com.project.restaurant.service;
+package com.project.shop.service;
 
-import com.project.restaurant.entity.Product;
+import com.project.shop.entity.Product;
 
 import java.util.List;
 
-public interface RestaurantService {
+public interface ProductService {
     List<Product> findAll();
     Object findById(int productId);
     void saveOrUpdate(Product theProduct);

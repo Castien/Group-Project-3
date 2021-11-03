@@ -1,13 +1,13 @@
-package com.project.restaurant;
+package com.project.shop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestaurantApplication {
+public class StoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestaurantApplication.class, args);
+		SpringApplication.run(StoreApplication.class, args);
 	}
 
 }
