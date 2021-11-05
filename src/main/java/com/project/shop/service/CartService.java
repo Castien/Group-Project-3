@@ -1,12 +1,12 @@
 package com.project.shop.service;
 
-import com.project.shop.entity.Cart;
+import com.project.shop.entity.CartActive;
 
 import java.util.List;
 
 public interface CartService {
-    List<Cart> findAll();
+    List<CartActive> findAll();
     Object findById(int cartId);
-    void saveOrUpdate(Cart theCart);
+    void saveOrUpdate(CartActive theCart);
     void deleteById(int cartId);
 }

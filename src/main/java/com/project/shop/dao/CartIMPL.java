@@ -1,7 +1,10 @@
 package com.project.shop.dao;
 
 import com.project.shop.entity.Cart;
+import com.project.shop.entity.CartActive;
+import com.project.shop.entity.OrderDetail;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,11 +27,14 @@ public class CartIMPL implements CartDAO {
         this.entityManager = entityManager;
     }
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     @Transactional //Defines the scope of a single database transaction.
-    public List<Cart> findAll() {
+    public List<CartActive> findAll() {
         Session currentSession = entityManager.unwrap(Session.class);
-        Query<Cart> myQuery = currentSession.createQuery("from Cart");
+        Query<CartActive> myQuery = currentSession.createQuery("from Cart");
         return myQuery.getResultList();
     }
 
@@ -41,7 +47,7 @@ public class CartIMPL implements CartDAO {
 
     @Override
     @Transactional //Defines the scope of a single database transaction.
-    public void saveOrUpdate(Cart theCart) {
+    public void saveOrUpdate(CartActive theCart) {
         Session currentSession = entityManager.unwrap(Session.class);
         currentSession.saveOrUpdate(theCart);
     }
@@ -52,6 +58,44 @@ public class CartIMPL implements CartDAO {
         Session currentSession = entityManager.unwrap(Session.class);
         Cart myCart = currentSession.get(Cart.class, theId);
         currentSession.delete(myCart);
+    }
+
+    @Override
+    public CartActive getByCartAndProduct(int cartId, int productId) {
+        String query = "FROM CartActive WHERE cartId = :cartId AND product.id = :productId";
+        try {
+
+            return sessionFactory.getCurrentSession()
+                    .createQuery(query,CartActive.class)
+                    .setParameter("cartId", cartId)
+                    .setParameter("productId", productId)
+                    .getSingleResult();
+
+        }catch(Exception ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean updateCart(CartActive cart) {
+        try {
+            sessionFactory.getCurrentSession().update(cart);
+            return true;
+        }
+        catch(Exception ex) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addOrderDetail(OrderDetail orderDetail) {
+        try {
+            sessionFactory.getCurrentSession().persist(orderDetail);
+            return true;
+        }
+        catch(Exception ex) {
+            return false;
+        }
     }
 
 

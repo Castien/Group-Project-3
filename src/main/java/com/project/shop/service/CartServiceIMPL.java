@@ -1,7 +1,7 @@
 package com.project.shop.service;
 
 import com.project.shop.dao.CartDAO;
-import com.project.shop.entity.Cart;
+import com.project.shop.entity.CartActive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,9 @@ public class CartServiceIMPL implements CartService {
     public CartServiceIMPL(CartDAO cartDAO) {
         this.cartDAO = cartDAO;
     }
+
     @Override
-    public List<Cart> findAll() {
+    public List<CartActive> findAll() {
         return cartDAO.findAll();
     }
 
@@ -28,7 +29,7 @@ public class CartServiceIMPL implements CartService {
     }
 
     @Override
-    public void saveOrUpdate(Cart theCart) {
+    public void saveOrUpdate(CartActive theCart) {
         cartDAO.saveOrUpdate(theCart);
     }
 
@@ -36,4 +37,5 @@ public class CartServiceIMPL implements CartService {
     public void deleteById(int cartId) {
         cartDAO.deleteById(cartId);
     }
+
 }

@@ -17,6 +17,7 @@ public class ProductServiceIMPL implements ProductService {
     public ProductServiceIMPL(ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
+
     @Override
     public List<Product> findAll() {
         return productDAO.findAll();
